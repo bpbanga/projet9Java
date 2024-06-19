@@ -1,0 +1,36 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-Main<patient>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.opemclassrom.Main",
+      "projectName": "patient",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=63294 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=patient"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-Main<front>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.opemclassrom.Main",
+      "projectName": "front",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=63422 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=front"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-Main<gateway>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.opemclassrom.Main",
+      "projectName": "gateway",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

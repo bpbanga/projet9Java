@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Home</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+</head>
+<body>
+<div class="container">
+	<div class="row"><h1>Listes des patients</h1></div>
+	</div>
+	
+	<div class="container">
+		<a href="/add" class="btn btn-primary btn-sm">Add New Patient</a>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Adresse</th>
+					<th>Date Naiss</th>
+					<th>Genre</th>
+					<th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Telephone</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="patientList : ${patientLists}">
+					<td style="width: 10%" th:text="${patientList.id}"></td>
+					<td th:text="${patientList.adresse}"></td>
+					<td th:text="${patientList.dateNaiss}"></td>
+					<td th:text="${patientList.genre}"></td>
+                    <td th:text="${patientList.nom}"></td>
+                    <td th:text="${patientList.prenom}"></td>
+                    <td th:text="${patientList.telephone}"></td>
+
+					<td style="width: 15%" class="text-center">
+						<a th:href="@{/update/{id}(id=${patientList.id})}">Edit</a> 
+						<a th:href="@{/list/{id}(id=${patientList.id})}">Fiche</a>
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</body>
+</html>

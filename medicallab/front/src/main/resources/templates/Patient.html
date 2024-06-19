@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <title>Add</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <h2>Patient</h2>
+      </div>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Adresse</th>
+            <th>Date Naiss</th>
+            <th>Genre</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Telephone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <td style="width: 10%" th:text="${patient.id}"></td>
+          <td th:text="${patient.adresse}"></td>
+          <td th:text="${patient.dateNaiss}"></td>
+          <td th:text="${patient.genre}"></td>
+          <td th:text="${patient.nom}"></td>
+          <td th:text="${patient.prenom}"></td>
+          <td th:text="${patient.telephone}"></td>
+        </tbody>
+      </table>
+      <a class="btn btn-danger btn-sm" href="/list">Cancel</a>
+    </div>
+  </body>
+</html>

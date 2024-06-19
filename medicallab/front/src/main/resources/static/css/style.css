@@ -1,0 +1,55 @@
+/*@charset "UTF-8";*/
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+.header {
+  background-color: #736d6d;
+  height: 40px;
+  line-height: 40px;
+}
+
+.logo {
+  background-color: #56cb62;
+  height: 40px;
+  width: 200px;
+  float: left;
+}
+
+.logname {
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.menu {
+  float: right;
+}
+
+.menu a {
+  color: #ffffff;
+}
+
+.menu a:hover {
+  color: #377de7;
+}
+
+.reperage {
+  color: #f9f6f6;
+}
+
+.reperage p {
+  color: #377de7;
+}
