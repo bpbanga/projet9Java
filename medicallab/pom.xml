@@ -19,6 +19,8 @@
 		<module>front</module>
 		<module>gateways</module>
 		<module>note</module>
+		<module>note</module>
+		<module>diagnostic</module>
 	</modules>
 	<name>medicallab</name>
 	<description>Demo project for Spring Boot</description>

@@ -16,13 +16,23 @@ public class PatientService {
     @Autowired
     private PatientRepository patientRepository;
 
-    public List<Patient> getPatients(){
-        return patientRepository.findAll();
+    public List<Patient> getPatients( int idPrat){
+
+        return patientRepository.findByIdPraticient(idPrat);
     }
 
-    public Patient getPatient(int id){
-         Optional <Patient> patient = patientRepository.findById(id);
-		return patient.get();
+    public Patient getPatient(int idPrat, int id){
+           
+         Optional <Patient> patient = patientRepository.findById(id);    
+        
+            if( patient.isPresent() && idPrat == patient.get().getIdPraticient()){
+                return patient.get();
+                
+            }else{
+                System.out.println("le praticient ne posséde pas ce patient");
+                return null;
+        } 
+
     }
 
     public Patient postPatient( Patient patient){
@@ -39,10 +49,11 @@ public class PatientService {
             patientToUp.get().setGenre(patientGenreup);
             patientToUp.get().setAdresse(patientAdresseUp);
             patientToUp.get().setTelephone(patientNumTelUp);
-        }
-        patientRepository.save(patientToUp.get());
-        return patientToUp.get();
 
+            patientRepository.save(patientToUp.get());
+            return patientToUp.get();
+        }
+        return null;
     }
 
 

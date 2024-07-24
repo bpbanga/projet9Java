@@ -1,10 +1,10 @@
 package com.opemclassrom.controller;
+import com.opemclassrom.model.FooNote;
 import com.opemclassrom.model.FooPatient;
 import com.opemclassrom.service.FrontService;
 
 import jakarta.validation.Valid;
 
-import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,9 +15,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -41,7 +38,10 @@ public class FrontController {
     @GetMapping("/list/{id}")
     public String getStringPatient(@PathVariable("id") Integer id,  Model model) {
         FooPatient patient = frontService.getPatient(id);
+        FooNote[] notes = frontService.getNote(id);
         model.addAttribute("patient", patient);
+        model.addAttribute("notes", notes);
+        model.addAttribute("noteAdd", new FooNote(String.valueOf(id), patient.getNom(), null));
         logger.info("Returning patient's page");
         return "Patient";
     }
@@ -68,6 +68,22 @@ public class FrontController {
 		}
                logger.info("error Redirect: /add");
                model.addAttribute("patient", patient);
+        return "Add";
+    }
+
+    @PostMapping("/addNote")
+    public String postNote(@Valid FooNote noteAdd, BindingResult result, Model model) {
+  
+
+        if (!result.hasErrors()) { 
+            logger.info("Returning Fiche/addNote page");
+		model.addAttribute("noteAdd", noteAdd);
+		frontService.postNote(noteAdd);
+        
+        return "redirect:list/" + noteAdd.getPatId();	
+		}
+               logger.info("error Redirect: /fihce");
+               model.addAttribute("note", noteAdd);
         return "Add";
     }
 

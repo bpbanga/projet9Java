@@ -1,11 +1,9 @@
 package com.opemclassrom.model;
-import jakarta.validation.constraints.NotEmpty;
 
 
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 
 public class FooPatient   {
@@ -13,16 +11,13 @@ public class FooPatient   {
     
     private int id;
 
-    @NotEmpty(message = "prenom est obligatoire")
+    
     private String prenom;
 
-    @NotEmpty(message = "nom est obligatoire")
     private String nom;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateNaiss;
 
-    @NotEmpty(message = "genre est obligatoire")
     private String genre;
 
     private String adresse;

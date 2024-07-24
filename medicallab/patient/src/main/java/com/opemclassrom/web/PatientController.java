@@ -21,14 +21,15 @@ public class PatientController {
     @Autowired
     private PatientService patientService;
 
-    @GetMapping("")
-    public List<Patient> getPatients(){
-        return patientService.getPatients();
+    @GetMapping("/{idPrat}")
+    public List<Patient> getPatients(@PathVariable int idPrat){
+       
+        return patientService.getPatients(idPrat);
     }
 
-    @GetMapping("/{id}")
-    public Patient getPatient(@PathVariable int id){
-        return patientService.getPatient(id);
+    @GetMapping("/{idPrat}/{id}")
+    public Patient getPatient(@PathVariable int idPrat, @PathVariable int id){
+        return patientService.getPatient(idPrat, id);
     }
 
 

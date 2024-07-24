@@ -13,3 +13,10 @@ spring:
           uri: localhost:9004
           predicates:
             - Path=/front/
+
+        - id: note
+          uri: localhost:9005
+          predicates:
+            - Path=/notes/
+# jwt:
+#   secret: mySecretKey

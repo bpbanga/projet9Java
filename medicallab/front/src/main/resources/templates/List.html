@@ -12,7 +12,7 @@
 	</div>
 	
 	<div class="container">
-		<a href="/add" class="btn btn-primary btn-sm">Add New Patient</a>
+		<a href="/add" class="btn btn-primary btn-sm">Ajoutez un nouveau patient</a>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -29,14 +29,14 @@
 				<tr th:each="patientList : ${patientLists}">
 					<td style="width: 10%" th:text="${patientList.id}"></td>
 					<td th:text="${patientList.adresse}"></td>
-					<td th:text="${patientList.dateNaiss}"></td>
+					<td th:text="${#dates.format(patientList.dateNaiss, 'dd-MM-yyyy')}"></td>
 					<td th:text="${patientList.genre}"></td>
                     <td th:text="${patientList.nom}"></td>
                     <td th:text="${patientList.prenom}"></td>
                     <td th:text="${patientList.telephone}"></td>
 
 					<td style="width: 15%" class="text-center">
-						<a th:href="@{/update/{id}(id=${patientList.id})}">Edit</a> 
+						<a th:href="@{/update/{id}(id=${patientList.id})}">Modifier</a> 
 						<a th:href="@{/list/{id}(id=${patientList.id})}">Fiche</a>
 
 					</td>

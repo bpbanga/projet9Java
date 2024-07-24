@@ -22,6 +22,9 @@ public class Patient {
     @Column(name = "ID")
     private int id;
 
+    @Column(name = "id_praticient")
+    private int idPraticient;
+
     @Column(name = "prenom")
     private String prenom;
 

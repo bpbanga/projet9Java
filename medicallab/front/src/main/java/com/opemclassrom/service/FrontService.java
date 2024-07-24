@@ -1,23 +1,21 @@
 package com.opemclassrom.service;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.opemclassrom.model.FooNote;
 import com.opemclassrom.model.FooPatient;
 
 @Service
 public class FrontService {
 
     RestTemplate restTemplate = new RestTemplate();
-    String fooResourceUrl = "http://localhost:9003/patients";
+    String fooResourceUrl = "http://localhost:9003/patients/{idPrat}";
+    String fooResourceUrlNote = "http://localhost:9003/notes";
 
 
     public FooPatient[] getPatients(){
@@ -30,6 +28,18 @@ public class FrontService {
     public FooPatient getPatient(  int id){
         FooPatient response = restTemplate.getForObject(fooResourceUrl + "/" + id, FooPatient.class);
         return response;
+    }
+
+    public FooNote[] getNote(  int id){
+        ResponseEntity<FooNote[]> response = restTemplate.getForEntity(fooResourceUrlNote + "/" + id, FooNote[].class);
+        FooNote[] notes = response.getBody();
+        return notes;
+    }
+
+    public FooNote postNote(FooNote noteToAdd){
+        HttpEntity<FooNote> request = new HttpEntity<>(noteToAdd);
+        FooNote foo = restTemplate.postForObject(fooResourceUrlNote, request, FooNote.class);
+        return foo;
     }
 
     public FooPatient postPatient(FooPatient patientToAdd){
