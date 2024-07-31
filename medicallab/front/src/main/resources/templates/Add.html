@@ -14,7 +14,7 @@
       <div class="row">
         <form
           action="#"
-          th:action="@{/validate}"
+          th:action="@{/{id}/validate(id=${idPrat})}"
           th:object="${patient}"
           method="post"
           class="form-horizontal"
@@ -129,7 +129,11 @@
 
           <div class="form-group">
             <div class="col-sm-12">
-              <a class="btn btn-danger btn-sm" href="/list">Retour</a>
+              <a
+                class="btn btn-danger btn-sm"
+                th:href="@{/list/{idPrat}(idPrat=${idPrat})}"
+                >Retour</a
+              >
               <input
                 class="btn btn-primary btn-sm"
                 type="submit"

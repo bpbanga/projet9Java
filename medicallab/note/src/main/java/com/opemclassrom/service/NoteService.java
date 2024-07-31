@@ -1,5 +1,6 @@
 package com.opemclassrom.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -16,8 +17,13 @@ public class NoteService {
      @Autowired
     private NoteRepository noteRepository;
 
+
     public List<Note> getNotes( int id){
-        return noteRepository.findByPatId(id);
+
+        ArrayList<Note> listNotes = new ArrayList<Note>(); 
+       listNotes = noteRepository.findByPatId(id);     
+        
+        return listNotes;
     }
 
     public Note postNote( Note note){

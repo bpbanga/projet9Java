@@ -1,5 +1,4 @@
 package com.opemclassrom.service;
-import java.util.List;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -14,19 +13,20 @@ import com.opemclassrom.model.FooPatient;
 public class FrontService {
 
     RestTemplate restTemplate = new RestTemplate();
-    String fooResourceUrl = "http://localhost:9003/patients/{idPrat}";
+    String fooResourceUrlPat = "http://localhost:9003/patients";
     String fooResourceUrlNote = "http://localhost:9003/notes";
+    String fooResourceUrlDiagnos = "http://localhost:9006/diagnostics";
 
 
-    public FooPatient[] getPatients(){
-        ResponseEntity<FooPatient[]> reponse = restTemplate.getForEntity(fooResourceUrl, FooPatient[].class);
+    public FooPatient[] getPatients( int idPrat){
+        ResponseEntity<FooPatient[]> reponse = restTemplate.getForEntity(fooResourceUrlPat + "/" + idPrat , FooPatient[].class);
         FooPatient[] patients = reponse.getBody(); 
         return patients;
         
     }
 
-    public FooPatient getPatient(  int id){
-        FooPatient response = restTemplate.getForObject(fooResourceUrl + "/" + id, FooPatient.class);
+    public FooPatient getPatient( int idPrat, int id){
+        FooPatient response = restTemplate.getForObject(fooResourceUrlPat + "/" + idPrat + "/" + id , FooPatient.class);
         return response;
     }
 
@@ -36,24 +36,26 @@ public class FrontService {
         return notes;
     }
 
+    public String getDiagnostic( int idPrat, int id){
+        String diagnos = restTemplate.getForObject(fooResourceUrlDiagnos + "/" + idPrat + "/" + id , String.class );
+        return diagnos;
+    }
+
     public FooNote postNote(FooNote noteToAdd){
         HttpEntity<FooNote> request = new HttpEntity<>(noteToAdd);
         FooNote foo = restTemplate.postForObject(fooResourceUrlNote, request, FooNote.class);
         return foo;
     }
 
-    public FooPatient postPatient(FooPatient patientToAdd){
+    public FooPatient postPatient( int idPrat, FooPatient patientToAdd){
         HttpEntity<FooPatient> request = new HttpEntity<>(patientToAdd);
-        FooPatient foo = restTemplate.postForObject(fooResourceUrl, request, FooPatient.class);
+        FooPatient foo = restTemplate.postForObject(fooResourceUrlPat + "/" + idPrat , request, FooPatient.class);
         return foo;
     }
 
-    public FooPatient putPatient(FooPatient patientToUp){
+    public FooPatient putPatient(int idPrat ,FooPatient patientToUp){
         HttpEntity<FooPatient> request = new HttpEntity<>(patientToUp);
-        HttpEntity<FooPatient> foo = restTemplate.exchange(fooResourceUrl, HttpMethod.PUT, request, FooPatient.class);
+        HttpEntity<FooPatient> foo = restTemplate.exchange(fooResourceUrlPat + "/" + idPrat , HttpMethod.PUT, request, FooPatient.class);
        return foo.getBody() ;
     }
-
-
-
 }

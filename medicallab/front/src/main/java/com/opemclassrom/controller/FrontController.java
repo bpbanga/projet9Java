@@ -26,53 +26,58 @@ public class FrontController {
 	private FrontService frontService;
     
     private static final Logger logger = LogManager.getLogger("FrontController");
-    @GetMapping("/list")
-    public String home(Model model) {
+    @GetMapping("/list/{idPrat}")
+    public String home(@PathVariable("idPrat") Integer idPrat ,Model model) {
 
-        FooPatient[] patientLists = frontService.getPatients();
+        FooPatient[] patientLists = frontService.getPatients(idPrat);
         model.addAttribute("patientLists", patientLists);
+        model.addAttribute("idPrat", idPrat);
         logger.info("Returning list page");
         return "List";
     }
 
-    @GetMapping("/list/{id}")
-    public String getStringPatient(@PathVariable("id") Integer id,  Model model) {
-        FooPatient patient = frontService.getPatient(id);
+    @GetMapping("/list/{idPrat}/{id}")
+    public String getStringPatient(@PathVariable("idPrat") Integer idPrat ,@PathVariable("id") Integer id,  Model model) {
+        FooPatient patient = frontService.getPatient(idPrat , id);
         FooNote[] notes = frontService.getNote(id);
+        String diagnostic =frontService.getDiagnostic(idPrat, id);
         model.addAttribute("patient", patient);
+        model.addAttribute("idPrat", idPrat);
         model.addAttribute("notes", notes);
+        model.addAttribute("diagnostic", diagnostic);
         model.addAttribute("noteAdd", new FooNote(String.valueOf(id), patient.getNom(), null));
         logger.info("Returning patient's page");
         return "Patient";
     }
     
 
-    @GetMapping("/add")
-    public String addPatientForm(Model model) {
+    @GetMapping("/{idPrat}/add")
+    public String addPatientForm(@PathVariable("idPrat") Integer idPrat ,Model model) {
 
         model.addAttribute("patient", new FooPatient());
+        model.addAttribute("idPrat", idPrat);
         logger.info("Retturning add page");
         return "Add";
     }
 
-    @PostMapping("/validate")
-    public String validate(@Valid FooPatient patient, BindingResult result, Model model) {
+    @PostMapping("/{idPrat}/validate")
+    public String validate(@PathVariable("idPrat") Integer idPrat , @Valid FooPatient patient, BindingResult result, Model model) {
   
 
         if (!result.hasErrors()) { 
             logger.info("Returning patient/add page");
 		model.addAttribute("patient", patient);
-		frontService.postPatient(patient);
+		frontService.postPatient(idPrat , patient);
         
-        return "redirect:list";	
+        return "redirect:/list/" + idPrat;	
 		}
                logger.info("error Redirect: /add");
                model.addAttribute("patient", patient);
         return "Add";
     }
 
-    @PostMapping("/addNote")
-    public String postNote(@Valid FooNote noteAdd, BindingResult result, Model model) {
+    @PostMapping("/{idPrat}/addNote")
+    public String postNote(@PathVariable("idPrat") Integer idPrat , @Valid FooNote noteAdd, BindingResult result, Model model) {
   
 
         if (!result.hasErrors()) { 
@@ -80,30 +85,31 @@ public class FrontController {
 		model.addAttribute("noteAdd", noteAdd);
 		frontService.postNote(noteAdd);
         
-        return "redirect:list/" + noteAdd.getPatId();	
+        return "redirect:/list/"+ idPrat + "/" + noteAdd.getPatId();	
 		}
                logger.info("error Redirect: /fihce");
                model.addAttribute("note", noteAdd);
         return "Add";
     }
 
-     @GetMapping("/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        FooPatient patient = frontService.getPatient(id);
+     @GetMapping("/{idPrat}/update/{id}")
+    public String showUpdateForm(@PathVariable("idPrat") Integer idPrat , @PathVariable("id") Integer id, Model model) {
+        FooPatient patient = frontService.getPatient(idPrat , id);
+        model.addAttribute("idPrat", idPrat);
         model.addAttribute("patient", patient);
         return "Update";
     }
     
-    @PostMapping("/changePatient")
-    public String putMethodName( @Valid FooPatient patient, BindingResult result, Model model) {
+    @PostMapping("/{idPrat}/changePatient")
+    public String putMethodName( @PathVariable("idPrat") Integer idPrat , @Valid FooPatient patient, BindingResult result, Model model) {
         
 
         if (!result.hasErrors()) { 
             logger.info("Returning patient/update page");
 		model.addAttribute("patient", patient);
-		frontService.putPatient(patient);
+		frontService.putPatient(idPrat , patient);
         
-        return "redirect:list";	
+        return "redirect:/list/" + idPrat;	
 		}
                logger.info("error Redirect: /update");
                model.addAttribute("patient", patient);

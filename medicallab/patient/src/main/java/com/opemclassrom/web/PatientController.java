@@ -34,14 +34,14 @@ public class PatientController {
 
 
 
-    @PostMapping("")
-    public Patient addPatient( @RequestBody Patient patient){
-        return patientService.postPatient(patient);
+    @PostMapping("/{idPrat}")
+    public Patient addPatient( @PathVariable int idPrat, @RequestBody Patient patient){
+        return patientService.postPatient(idPrat, patient);
 	}
 
-    @PutMapping("")
-    public Patient putPatient( @RequestBody Patient patient){
-        return patientService.putPatient(patient.getId(), patient.getPrenom(),patient.getNom() ,
+    @PutMapping("/{idPrat}")
+    public Patient putPatient(@PathVariable int idPrat , @RequestBody Patient patient){
+        return patientService.putPatient(idPrat, patient.getId(), patient.getPrenom(),patient.getNom() ,
                                          patient.getDateNaiss() , patient.getGenre(), patient.getAdresse(), patient.getTelephone());
 
     }

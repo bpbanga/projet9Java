@@ -12,7 +12,7 @@
 	</div>
 	
 	<div class="container">
-		<a href="/add" class="btn btn-primary btn-sm">Ajoutez un nouveau patient</a>
+		<a th:href="@{/{idPrat}/add(idPrat=${idPrat})}" class="btn btn-primary btn-sm">Ajoutez un nouveau patient</a>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -36,8 +36,8 @@
                     <td th:text="${patientList.telephone}"></td>
 
 					<td style="width: 15%" class="text-center">
-						<a th:href="@{/update/{id}(id=${patientList.id})}">Modifier</a> 
-						<a th:href="@{/list/{id}(id=${patientList.id})}">Fiche</a>
+						<a th:href="@{/{idPrat}/update/{id}(id=${patientList.id}, idPrat=${idPrat})}">Modifier</a> 
+						<a th:href="@{/list/{idPrat}/{id}(id=${patientList.id} , idPrat=${idPrat})}">Fiche</a>
 
 					</td>
 				</tr>

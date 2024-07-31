@@ -4,6 +4,8 @@ package com.opemclassrom.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 
 public class FooPatient   {
@@ -16,6 +18,7 @@ public class FooPatient   {
 
     private String nom;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateNaiss;
 
     private String genre;

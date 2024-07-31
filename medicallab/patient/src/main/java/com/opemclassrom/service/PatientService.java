@@ -35,14 +35,15 @@ public class PatientService {
 
     }
 
-    public Patient postPatient( Patient patient){
+    public Patient postPatient( int idPrat,Patient patient){
+        patient.setIdPraticient(idPrat);
         return patientRepository.save(patient);
     }
 
-    public Patient putPatient(int patientIDUp,String patientPrenomUp , String patientNomUp, Date patientDateNaisUp,
+    public Patient putPatient(int idPrat, int patientIDUp,String patientPrenomUp , String patientNomUp, Date patientDateNaisUp,
                            String patientGenreup, String patientAdresseUp, String patientNumTelUp){
         Optional <Patient> patientToUp = patientRepository.findById(patientIDUp);
-        if (patientToUp.isPresent()){
+        if (patientToUp.isPresent() && idPrat == patientToUp.get().getIdPraticient()){
             patientToUp.get().setPrenom(patientPrenomUp);
             patientToUp.get().setNom(patientNomUp);
             patientToUp.get().setDateNaiss(patientDateNaisUp);

@@ -18,11 +18,11 @@ public class GatewayConfiguration {
                                         .and().method("GET")
                                         .uri("http://localhost:9002"))                        
                 .route("patient",
-                                r -> r.path("/patients")
+                                r -> r.path("/patients/{idPrat}")
                                         .and().method("POST")
                                         .uri("http://localhost:9002"))
                 .route("patient",
-                                r -> r.path("/patients")
+                                r -> r.path("/patients/{idPrat}")
                                         .and().method("PUT")
                                         .uri("http://localhost:9002"))
                 .route("note",
@@ -37,6 +37,10 @@ public class GatewayConfiguration {
                                 r -> r.path("/notes/{id}")
                                         .and().method("GET")
                                         .uri("http://localhost:9005"))
+                .route("diagnostic",
+                                r -> r.path("/diagnostics/{idPrat}/{id}")
+                                        .and().method("GET")
+                                        .uri("http://localhost:9006"))                        
 
                     .build();
     }

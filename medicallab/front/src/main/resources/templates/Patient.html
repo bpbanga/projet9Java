@@ -45,7 +45,7 @@
       </table>
       <form
         action="#"
-        th:action="@{/addNote}"
+        th:action="@{/{idPrat}/addNote(idPrat=${idPrat})}"
         th:object="${noteAdd}"
         method="post"
         class="form-horizontal"
@@ -88,7 +88,22 @@
           value="Ajout note"
         />
       </form>
-      <a class="btn btn-danger btn-sm" href="/list">Retour</a>
+      <div class="container-fluid col-sm-12">
+        <label type="text">
+          Diagnostic:
+          <p
+            type="text"
+            th:text="${diagnostic}"
+            id="diagnostic"
+            class="col-4"
+          ></p>
+        </label>
+      </div>
+      <a
+        class="btn btn-danger btn-sm"
+        th:href="@{/list/{idPrat}(idPrat=${idPrat})}"
+        >Retour</a
+      >
     </div>
   </body>
 </html>

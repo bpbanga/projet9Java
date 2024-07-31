@@ -1,7 +1,9 @@
 package com.opemclassrom.service;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,11 +20,16 @@ public class DiagnosticService {
     String fooResourceUrlNote = "http://localhost:9003/notes";
 
 
-    public String getDiagnostic(  int id){
+    public String getDiagnostic( int idPrat ,  int id){
         String diagnos = "None" ;
-        FooPatient patient = restTemplate.getForObject(fooResourceUrl + "/" + id, FooPatient.class);
+        FooPatient patient = restTemplate.getForObject(fooResourceUrl +   "/" + idPrat + "/" + id, FooPatient.class);
         ResponseEntity<FooNote[]> response = restTemplate.getForEntity(fooResourceUrlNote + "/" + id, FooNote[].class);
         FooNote[] notesList = response.getBody();
+        LocalDate patientLocalDate = patient.getDateNaiss().toInstant() 
+                  .atZone(ZoneId.systemDefault()) 
+                  .toLocalDate(); 
+        Integer age = Period.between(patientLocalDate, LocalDate.now()).getYears();
+
         if(notesList == null || notesList.length == 0){
             return diagnos;
         }
@@ -42,39 +49,39 @@ public class DiagnosticService {
        
         int symptomes = 0;
        
-    for(int i = 0; i < sympList.size(); i = i + 1){
-        Boolean isPresent = false;
-        for(FooNote notes: notesList){
-            if(notes.getNote().indexOf(sympList.get(i)) >= 0){
-                isPresent = true;
+        for(int i = 0; i < sympList.size(); i = i + 1){
+            Boolean isPresent = false;
+            for(FooNote notes: notesList){
+                if(notes.getNote().toLowerCase().indexOf(sympList.get(i).toLowerCase()) >= 0){
+                    isPresent = true;
+                }
             }
+            if(isPresent){
+                symptomes = symptomes + 1;
+            }
+                    
         }
-        if(isPresent){
-            symptomes = symptomes + 1;
-        }
-                
-    }
-      
-
-    if((symptomes >= 2 && symptomes <= 5) && ((patient.getAge() >= 30 ) )){
-
-        diagnos = "Borderline";
-    }
-    else if (((patient.getGenre() == "M") && (symptomes == 3 || symptomes == 4) && (patient.getAge() < 30)) ||
-            ((patient.getGenre() == "F") && (symptomes >= 4 && symptomes <= 6) && (patient.getAge() <30)) ||
-            ((patient.getAge() >= 30) && (symptomes >= 6 && symptomes <= 7) )) {
-
         
-        diagnos = "In Danger";
-    }
 
-    else if (((patient.getGenre() == "M") && (symptomes >= 5) && (patient.getAge() < 30)) ||
-            ((patient.getGenre() == "F") && (symptomes >=7) && (patient.getAge() <30))||
-            ((patient.getAge() >= 30) && (symptomes >= 8) )) {
+        if((symptomes >= 2 && symptomes <= 5) && ((age >= 30 ) )){
 
-        diagnos = "Early onset";
+            diagnos = "Borderline";
+        }
+        else if ((("M".equals(patient.getGenre())) && (symptomes == 3 || symptomes == 4) && (age < 30)) ||
+                (("F".equals(patient.getGenre())) && (symptomes >= 4 && symptomes <= 6) && (age <30)) ||
+                ((age >= 30) && (symptomes >= 6 && symptomes <= 7) )) {
+
+            
+            diagnos = "In Danger";
+        }
+
+        else if ((("M".equals(patient.getGenre())) && (symptomes >= 5) && (age < 30)) ||
+                (("F".equals(patient.getGenre())) && (symptomes >=7) && (age <30))||
+                ((age >= 30) && (symptomes >= 8) )) {
+
+            diagnos = "Early onset";
+        }
+        return diagnos;
     }
-    return diagnos;
-     }
 
 }
