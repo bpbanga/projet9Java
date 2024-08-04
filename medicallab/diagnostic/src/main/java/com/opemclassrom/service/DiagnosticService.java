@@ -42,7 +42,7 @@ public class DiagnosticService {
         sympList.add("Fumeuse");
         sympList.add("Anormal");
         sympList.add("Cholestérol");
-        sympList.add("Vertiges");
+        sympList.add("Vertige");
         sympList.add("Rechute");
         sympList.add("Réaction");
         sympList.add("Anticorps");

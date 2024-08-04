@@ -17,8 +17,6 @@
 		<module>patient</module>
 		<module>gateway</module>
 		<module>front</module>
-		<module>gateways</module>
-		<module>note</module>
 		<module>note</module>
 		<module>diagnostic</module>
 	</modules>
