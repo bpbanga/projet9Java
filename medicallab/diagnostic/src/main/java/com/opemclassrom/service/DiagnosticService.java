@@ -48,7 +48,6 @@ public class DiagnosticService {
         sympList.add("Anticorps");
        
         int symptomes = 0;
-       
         for(int i = 0; i < sympList.size(); i = i + 1){
             Boolean isPresent = false;
             for(FooNote notes: notesList){
@@ -58,27 +57,19 @@ public class DiagnosticService {
             }
             if(isPresent){
                 symptomes = symptomes + 1;
-            }
-                    
+            }            
         }
-        
-
         if((symptomes >= 2 && symptomes <= 5) && ((age >= 30 ) )){
-
             diagnos = "Borderline";
         }
         else if ((("M".equals(patient.getGenre())) && (symptomes == 3 || symptomes == 4) && (age < 30)) ||
                 (("F".equals(patient.getGenre())) && (symptomes >= 4 && symptomes <= 6) && (age <30)) ||
-                ((age >= 30) && (symptomes >= 6 && symptomes <= 7) )) {
-
-            
+                ((age >= 30) && (symptomes >= 6 && symptomes <= 7) )) {    
             diagnos = "In Danger";
         }
-
         else if ((("M".equals(patient.getGenre())) && (symptomes >= 5) && (age < 30)) ||
                 (("F".equals(patient.getGenre())) && (symptomes >=7) && (age <30))||
                 ((age >= 30) && (symptomes >= 8) )) {
-
             diagnos = "Early onset";
         }
         return diagnos;

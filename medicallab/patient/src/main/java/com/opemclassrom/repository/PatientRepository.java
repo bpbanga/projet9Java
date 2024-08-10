@@ -13,4 +13,6 @@ public interface PatientRepository extends JpaRepository<Patient, Integer>{
 
     List <Patient> findByIdPraticient(int idPraticient);
 
+    Patient findByNom(String nom);
+
 }

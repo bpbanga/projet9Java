@@ -1,9 +1,8 @@
 package com.opemclassrom.model;
-
-
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Data;
 
+@Data
 @Document
 public class Note {
 
@@ -18,30 +17,7 @@ public class Note {
         super();
         this.patient = patient;
         this.note = note;
-    }
-    public int getPatId() {
-        return patId;
-    }
-
-    public void setPatId(int patId) {
-        this.patId = patId;
-    }
-
-    public String getPatient() {
-        return patient;
-    }
-
-    public void setPatient(String patient) {
-        this.patient = patient;
-    }
-   
-    public String getNote() {
-       
-        return note;
-    }
-    public void setNote(String note) {
-        this.note = note;
-    }
+    }  
 
     @Override
     public String toString() {
