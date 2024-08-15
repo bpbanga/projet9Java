@@ -11,13 +11,14 @@ FROM openjdk:17-jdk-alpine
 #api port
 EXPOSE 9002
 
+VOLUME /opt
+
 ARG JAR_FILE=target/*.jar
 
-COPY ./target/patient-1.0-SNAPSHOT.jar app.jar
+COPY  target/*.jar app.jar
+
+# ADD target/patient-1.0-SNAPSHOT.jar app.jar
 
 ENTRYPOINT  [ "java", "-jar","/app.jar" ]
 
-# RUN javac MAin.java
-
-# WORKDIR /the/workdir/path
-# # run java app:
+WORKDIR /app
