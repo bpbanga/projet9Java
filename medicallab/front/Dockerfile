@@ -4,12 +4,12 @@
 ## Need to add curl to the alpine for healthcheck in docker-compose.yml file
 
 ###########################
-#microservice patient
+#microservice diagnostic
 ###########################
 # Alpine Linux with OpenJDK JRE
 FROM openjdk:17-jdk-alpine
 #api port
-EXPOSE 9002
+EXPOSE 9004
 
 VOLUME /tmp
 

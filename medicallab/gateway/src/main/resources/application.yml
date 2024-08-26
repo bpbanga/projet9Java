@@ -5,18 +5,34 @@ spring:
     gateway:
       routes:
         - id: patient
-          uri: localhost:9002
+          uri: http://patient:9002
           predicates:
             - Path=/patients/
 
         - id: front
-          uri: localhost:9004
+          uri: http://front:9004
           predicates:
-            - Path=/front/
+            - Path=/fronts/
 
         - id: note
-          uri: localhost:9005
+          uri: http://note:9005
           predicates:
             - Path=/notes/
+
+        - id: diagnostic
+          uri: http://diagnostic:9006
+          predicates:
+            - Path=/diagnostics/
+# management:
+#   endpoints:
+#     web:
+#       exposure:
+#         include: "gateway*,env,health,info"
+#   endpoint:
+#     env:
+#       show-values: always
+#       sensitive: false
+#     gateway:
+#       enabled: true
 # jwt:
 #   secret: mySecretKey

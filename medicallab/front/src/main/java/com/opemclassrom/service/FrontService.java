@@ -13,9 +13,9 @@ import com.opemclassrom.model.FooPatient;
 public class FrontService {
 
     RestTemplate restTemplate = new RestTemplate();
-    String fooResourceUrlPat = "http://localhost:9003/patients";
-    String fooResourceUrlNote = "http://localhost:9003/notes";
-    String fooResourceUrlDiagnos = "http://localhost:9006/diagnostics";
+    String fooResourceUrlPat = "http://patient:9003/patients";
+    String fooResourceUrlNote = "http://note:9003/notes";
+    String fooResourceUrlDiagnos = "http://diagnostic:9006/diagnostics";
 
 
     public FooPatient[] getPatients( int idPrat){

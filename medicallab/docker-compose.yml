@@ -1,0 +1,114 @@
+version: "3.8"
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_container
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: pagesAlvin200@237
+      MYSQL_DATABASE: projet9
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - spring-boot-network
+
+  patient:
+    build: ./patient
+    container_name: patient
+    ports:
+      - "9002:9002"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/projet9
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: pagesAlvin200@237
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - mysql
+    networks:
+      - spring-boot-network
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_container
+    volumes:
+      - db_data_mongo:/data/db
+      - mongo_config:/data/configdb
+    ports:
+      - "27018:27017"
+    networks:
+      - spring-boot-network
+
+  note:
+    build: ./note
+    container_name: note
+    depends_on:
+      - mongodb
+    restart: always
+    environment:
+      SPRING_DATA_MONGODB_HOST: mongodb
+      SPRING_DATA_MONGODB_PORT: 27017
+      SPRING_DATA_MONGODB_DATABASE: projet9MD
+    ports:
+      - "9005:9005"
+    networks:
+      - spring-boot-network
+
+  gateway:
+    build: ./gateway
+    container_name: gateway
+    ports:
+      - "9003:9003"
+    environment:
+      - SPRING_CLOUD_GATEWAY_ROUTES[0].ID=patient
+      - SPRING_CLOUD_GATEWAY_ROUTES[0].URI=http://patient:9002
+      - SPRING_CLOUD_GATEWAY_ROUTES[0].PREDICATES[0]=Path=/patients/**
+
+      - SPRING_CLOUD_GATEWAY_ROUTES[1].ID=note
+      - SPRING_CLOUD_GATEWAY_ROUTES[1].URI=http://note:9005
+      - SPRING_CLOUD_GATEWAY_ROUTES[1].PREDICATES[0]=Path=/notes/**
+
+      - SPRING_CLOUD_GATEWAY_ROUTES[2].ID=diagnostic
+      - SPRING_CLOUD_GATEWAY_ROUTES[2].URI=http://diagnostic:9006
+      - SPRING_CLOUD_GATEWAY_ROUTES[2].PREDICATES[0]=Path=/diagnostics/**
+    # depends_on:
+    #   - patient
+    #   - note
+    networks:
+      - spring-boot-network
+
+  diagnostic:
+    build: ./diagnostic
+    container_name: diagnostic
+    ports:
+      - "9006:9006"
+    environment:
+      - PATIENT_SERVICE_URL=http://gateway:9003/patients
+      - NOTE_SERVICE_URL=http://gateway:9003/notes
+    depends_on:
+      - gateway
+    networks:
+      - spring-boot-network
+
+  front:
+    build: ./front
+    container_name: front
+    ports:
+      - "9004:9004"
+    environment:
+      - PATIENT_SERVICE_URL=http://gateway:9003/patients
+      - NOTE_SERVICE_URL=http://gateway:9003/notes
+      - DIAGNOSTIC_SERVICE_URL=http://gateway:9003/diagnostics
+    depends_on:
+      - gateway
+    networks:
+      - spring-boot-network
+
+networks:
+  spring-boot-network:
+
+volumes:
+  mysql_data:
+  db_data_mongo:
+  mongo_config:

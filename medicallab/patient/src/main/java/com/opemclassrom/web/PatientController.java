@@ -44,6 +44,9 @@ public class PatientController {
         return patientService.putPatient(idPrat, patient.getId(), patient.getPrenom(),patient.getNom() ,
                                          patient.getDateNaiss() , patient.getGenre(), patient.getAdresse(), patient.getTelephone());
 
+                                         
+
+
     }
      
     

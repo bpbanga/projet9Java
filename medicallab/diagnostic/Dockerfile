@@ -4,18 +4,20 @@
 ## Need to add curl to the alpine for healthcheck in docker-compose.yml file
 
 ###########################
-#microservice patient
+#microservice diagnostic
 ###########################
 # Alpine Linux with OpenJDK JRE
 FROM openjdk:17-jdk-alpine
 #api port
-EXPOSE 9002
+EXPOSE 9006
+
+VOLUME /tmp
 
 ARG JAR_FILE=target/*.jar
 
+COPY  target/*.jar app.jar
+
+
 ENTRYPOINT  [ "java", "-jar","/app.jar" ]
 
-RUN javac MAin.java
-
-WORKDIR /the/workdir/path
-# run java app:
+WORKDIR /app

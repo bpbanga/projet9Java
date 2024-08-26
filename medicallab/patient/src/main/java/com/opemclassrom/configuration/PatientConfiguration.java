@@ -25,7 +25,7 @@ public class PatientConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests()
+        http.csrf().disable().authorizeRequests()
         .requestMatchers("/*")
         .permitAll();
 

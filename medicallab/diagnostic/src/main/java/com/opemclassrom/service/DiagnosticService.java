@@ -16,8 +16,8 @@ import com.opemclassrom.model.FooPatient;
 public class DiagnosticService {
 
     RestTemplate restTemplate = new RestTemplate();
-    String fooResourceUrl = "http://localhost:9003/patients";
-    String fooResourceUrlNote = "http://localhost:9003/notes";
+    String fooResourceUrl = "http://patient:9003/patients";
+    String fooResourceUrlNote = "http://note:9003/notes";
 
 
     public String getDiagnostic( int idPrat ,  int id){
