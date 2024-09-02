@@ -41,7 +41,7 @@ public class FooNote {
     }
 
     public FooNote() {
-        //TODO Auto-generated constructor stub
+
     }
 
    

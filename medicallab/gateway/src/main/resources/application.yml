@@ -23,16 +23,3 @@ spring:
           uri: http://diagnostic:9006
           predicates:
             - Path=/diagnostics/
-# management:
-#   endpoints:
-#     web:
-#       exposure:
-#         include: "gateway*,env,health,info"
-#   endpoint:
-#     env:
-#       show-values: always
-#       sensitive: false
-#     gateway:
-#       enabled: true
-# jwt:
-#   secret: mySecretKey

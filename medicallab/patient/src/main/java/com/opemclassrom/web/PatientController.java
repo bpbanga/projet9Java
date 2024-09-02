@@ -32,8 +32,6 @@ public class PatientController {
         return patientService.getPatient(idPrat, id);
     }
 
-
-
     @PostMapping("/{idPrat}")
     public Patient addPatient( @PathVariable int idPrat, @RequestBody Patient patient){
         return patientService.postPatient(idPrat, patient);
@@ -44,12 +42,8 @@ public class PatientController {
         return patientService.putPatient(idPrat, patient.getId(), patient.getPrenom(),patient.getNom() ,
                                          patient.getDateNaiss() , patient.getGenre(), patient.getAdresse(), patient.getTelephone());
 
-                                         
-
-
     }
-     
-    
+
     }
 
 

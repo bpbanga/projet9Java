@@ -12,7 +12,6 @@ import com.opemclassrom.repository.PatientRepository;
 @Service
 public class PatientService {
 
-
     @Autowired
     private PatientRepository patientRepository;
 
@@ -56,6 +55,5 @@ public class PatientService {
         }
         return null;
     }
-
 
 }

@@ -5,6 +5,7 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,12 +13,17 @@ import org.springframework.web.client.RestTemplate;
 import com.opemclassrom.model.FooNote;
 import com.opemclassrom.model.FooPatient;
 
+
+
 @Service
 public class DiagnosticService {
 
     RestTemplate restTemplate = new RestTemplate();
-    String fooResourceUrl = "http://patient:9003/patients";
-    String fooResourceUrlNote = "http://note:9003/notes";
+    @Value("${PATIENT_SERVICE_URL}")
+    String fooResourceUrl;
+
+    @Value("${NOTE_SERVICE_URL}")
+    String fooResourceUrlNote;
 
 
     public String getDiagnostic( int idPrat ,  int id){

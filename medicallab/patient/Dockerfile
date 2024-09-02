@@ -1,8 +1,3 @@
-## This uses multi-stage build :
-## https://docs.docker.com/develop/develop-images/multistage-build/
-
-## Need to add curl to the alpine for healthcheck in docker-compose.yml file
-
 ###########################
 #microservice patient
 ###########################

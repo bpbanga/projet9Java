@@ -1,5 +1,6 @@
 package com.opemclassrom.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,14 @@ import com.opemclassrom.model.FooPatient;
 public class FrontService {
 
     RestTemplate restTemplate = new RestTemplate();
-    String fooResourceUrlPat = "http://patient:9003/patients";
-    String fooResourceUrlNote = "http://note:9003/notes";
-    String fooResourceUrlDiagnos = "http://diagnostic:9006/diagnostics";
+    @Value("${PATIENT_SERVICE_URL}")
+    String fooResourceUrlPat;
+
+    @Value("${NOTE_SERVICE_URL}")
+    String fooResourceUrlNote;
+
+    @Value("${DIAGNOSTIC_SERVICE_URL}")
+    String fooResourceUrlDiagnos;
 
 
     public FooPatient[] getPatients( int idPrat){

@@ -43,7 +43,7 @@ public class FooPatient   {
     }
 
     public FooPatient() {
-        //TODO Auto-generated constructor stub
+
     }
 
     public int getId() {

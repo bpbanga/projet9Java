@@ -1,0 +1,199 @@
+[{
+  "_id": {
+    "$oid": "66a7724859d8bd4141820889"
+  },
+  "patId": 4,
+  "patient": "TestEarlyOnset",
+  "note": "Le patient déclare qu'il lui est devenu difficile de monter les escaliers Il se plaint également d’être essoufflé Tests de laboratoire indiquant que les anticorps sont élevés Réaction aux médicaments",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a7736f59d8bd414182088e"
+  },
+  "patId": 4,
+  "patient": "TestEarlyOnset",
+  "note": "Le patient déclare qu'il a mal au dos lorsqu'il reste assis pendant longtemps",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a7738459d8bd414182088f"
+  },
+  "patId": 4,
+  "patient": "TestEarlyOnset",
+  "note": "Le patient déclare avoir commencé à fumer depuis peu Hémoglobine A1C supérieure au niveau recommandé",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a7739259d8bd4141820890"
+  },
+  "patId": 4,
+  "patient": "TestEarlyOnset",
+  "note": "Taille, Poids, Cholestérol, Vertige et Réaction",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a773bd59d8bd4141820891"
+  },
+  "patId": 3,
+  "patient": "TestInDanger",
+  "note": "Le patient déclare qu'il est fumeur et qu'il a cessé de fumer l'année dernière Il se plaint également de crises d’apnée respiratoire anormales Tests de laboratoire indiquant un taux de cholestérol LDL élevé",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a773db59d8bd4141820892"
+  },
+  "patId": 3,
+  "patient": "TestInDanger",
+  "note": "Le patient déclare qu'il fume depuis peu",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a7740859d8bd4141820893"
+  },
+  "patId": 2,
+  "patient": "TestBorderline",
+  "note": "Le patient déclare avoir fait une réaction aux médicaments au cours des 3 derniers mois Il remarque également que son audition continue d'être anormale",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a7742559d8bd4141820894"
+  },
+  "patId": 2,
+  "patient": "TestBorderline",
+  "note": "Le patient déclare qu'il ressent beaucoup de stress au travail Il se plaint également que son audition est anormale dernièrement",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a7744b59d8bd4141820895"
+  },
+  "patId": 1,
+  "patient": "TestNone",
+  "note": "Le patient déclare qu'il 'se sent très bien' Poids égal ou inférieur au poids recommandé",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a7783559d8bd4141820896"
+  },
+  "patId": 1,
+  "patient": "TestNone",
+  "note": "Le patient a atteint un état critique",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a7786759d8bd4141820897"
+  },
+  "patId": 1,
+  "patient": "TestNone",
+  "note": "Le patient  a une santé grave ",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a7787959d8bd4141820898"
+  },
+  "patId": 1,
+  "patient": "TestNone",
+  "note": "Le patient  a une santé grave ",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a77ab859d8bd4141820899"
+  },
+  "patId": 0,
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a77ae659d8bd414182089a"
+  },
+  "patId": 0,
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a77ae959d8bd414182089b"
+  },
+  "patId": 0,
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a77aea59d8bd414182089c"
+  },
+  "patId": 0,
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a77c1259d8bd414182089d"
+  },
+  "patId": 3,
+  "patient": "TestInDanger",
+  "note": "le patient est inconscient",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a9222179923878729a6f06"
+  },
+  "patId": 105,
+  "patient": "ngassam",
+  "note": "patient souffrant",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a9246179923878729a6f07"
+  },
+  "patId": 105,
+  "patient": "ngassam",
+  "note": "patient non malade",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a925c279923878729a6f08"
+  },
+  "patId": 106,
+  "patient": "dimitri",
+  "note": "patient infirme",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66a92c3679923878729a6f09"
+  },
+  "patId": 4,
+  "patient": "TestEarlyOnset",
+  "note": "vertiges",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66c33f3bd31f2558381adf10"
+  },
+  "patId": 4,
+  "patient": "TestEarlyOnset",
+  "note": "le patient est completement tombé dans les pommes",
+  "_class": "com.opemclassrom.model.Note"
+},
+{
+  "_id": {
+    "$oid": "66c33f68d31f2558381adf11"
+  },
+  "patId": 4,
+  "patient": "TestEarlyOnset",
+  "note": "le patient est completement tombé dans les pommes et ne veut plus rien entendre de ce que l'on lui dis",
+  "_class": "com.opemclassrom.model.Note"
+}]
