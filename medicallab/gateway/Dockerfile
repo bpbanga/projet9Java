@@ -1,22 +1,47 @@
-## https://docs.docker.com/develop/develop-images/multistage-build/
-
-## Need to add curl to the alpine for healthcheck in docker-compose.yml file
-
 ###########################
 #microservice gateway
 ###########################
-# Alpine Linux with OpenJDK JRE
+##########################
+# Étape de Build
+# ##########################
+# Utiliser une image Maven officielle avec JDK 17 pour la construction
+FROM maven:3.8.7-eclipse-temurin-17 AS build
+
+# Définir le répertoire de travail dans le conteneur
+WORKDIR /app
+
+# Copier le fichier POM spécifique au service patient
+COPY pom.xml pom.xml
+
+# Télécharger les dépendances Maven
+RUN mvn dependency:go-offline -B
+
+# Copier le reste des fichiers du projet
+COPY src ./src
+
+# Construire le projet avec Maven
+RUN mvn clean install -DskipTests
+
+###########################
+# Étape d'exécution
+###########################
+# Alpine Linux avec OpenJDK JRE
 FROM openjdk:17-jdk-alpine
-#api port
+
+# API port
 EXPOSE 9003
 
+# Créer un volume temporaire
 VOLUME /tmp
 
-ARG JAR_FILE=target/*.jar
+# Copier le fichier JAR généré par Maven depuis l'étape précédente
+COPY --from=build /app/target/*.jar /app/app.jar
 
-COPY  target/*.jar app.jar
-
-
-ENTRYPOINT  [ "java", "-jar","/app.jar" ]
-
+# Définir le répertoire de travail dans le conteneur
 WORKDIR /app
+
+# Définir l'entrypoint
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+
+
+

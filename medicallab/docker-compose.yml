@@ -16,7 +16,9 @@ services:
       - spring-boot-network
 
   patient:
-    build: ./patient
+    build:
+      context: ./patient
+      dockerfile: Dockerfile
     container_name: patient
     ports:
       - "9002:9002"
