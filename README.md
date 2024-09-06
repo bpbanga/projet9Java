@@ -69,16 +69,21 @@ cd project9
 
 mvnw clean install
 
-5.Launch the docker-compose to launch the 4 components:
+5.Launch the docker-compose to launch the 5 components:
 
 docker-compose up
 
     To access the application endpoints, open your browser, go to :
-    Front
-    PATIENT Microservice REST API Swagger
-    NOTE Microservice REST API Swagger
-    GATEWAY microservice REST API Swagger
-    DIAGNOSTIC ASSESSMENT Microservice REST API Swagger
+    Front microservice REST API
+    PATIENT Microservice REST API 
+    NOTE Microservice REST API 
+    GATEWAY microservice REST API 
+    DIAGNOSTIC ASSESSMENT Microservice REST API
+
+6. for run the application command:
+   go to the racine: cd /medicallab
+   run application: docker-compose up
+   if yours images is not build: docker-compose up --build
 
 
 
